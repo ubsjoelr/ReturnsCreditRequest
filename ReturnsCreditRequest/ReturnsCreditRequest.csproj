@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{568FF927-ED86-4D45-B72E-BB5605D924FF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ReturnsCreditRequest</RootNamespace>
+    <AssemblyName>ReturnsCreditRequest</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNote.Designer.cs">
+      <DependentUpon>AddNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess.cs" />
+    <Compile Include="EditOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditOrder.Designer.cs">
+      <DependentUpon>EditOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmailLogger.cs" />
+    <Compile Include="EmailTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmailTemplate.Designer.cs">
+      <DependentUpon>EmailTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmailTemplates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmailTemplates.Designer.cs">
+      <DependentUpon>EmailTemplates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnterPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnterPassword.Designer.cs">
+      <DependentUpon>EnterPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HoldOrGiveUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoldOrGiveUp.Designer.cs">
+      <DependentUpon>HoldOrGiveUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManualSuppliers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManualSuppliers.Designer.cs">
+      <DependentUpon>ManualSuppliers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddNote.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AddNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditOrder.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailTemplate.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EmailTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailTemplates.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EmailTemplates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnterPassword.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EnterPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoldOrGiveUp.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>HoldOrGiveUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManualSuppliers.resx">
+      <DependentUpon>ManualSuppliers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReturnNotes.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ReturnNotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeNotes.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SeNotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupplierEmails.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SupplierEmails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuppliersList.resx">
+      <DependentUpon>SuppliersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrackingNumbers.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TrackingNumbers.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ReturnNotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReturnNotes.Designer.cs">
+      <DependentUpon>ReturnNotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SeNotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeNotes.Designer.cs">
+      <DependentUpon>SeNotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierEmails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupplierEmails.Designer.cs">
+      <DependentUpon>SupplierEmails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SuppliersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuppliersList.Designer.cs">
+      <DependentUpon>SuppliersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrackingNumbers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackingNumbers.Designer.cs">
+      <DependentUpon>TrackingNumbers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
