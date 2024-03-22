@@ -493,6 +493,7 @@ namespace ReturnsCreditRequest
                             try
                             {
                                 bool pbSent = false;
+                                //pbSent = EmailLogger.SendEmail("nlaguma@unbeatablesale.com", psSubject, psBody, poAttch, null, null, "");
                                 if (xbTest)                                
                                 {
                                     pbSent = EmailLogger.SendEmail(@ConfigurationManager.AppSettings["EmailTo"], psSubject, psBody, poAttch, null, null, "");
@@ -505,7 +506,8 @@ namespace ReturnsCreditRequest
                                     foreach (string psEmail in psEmails)
                                     {
                                         //pbSent = EmailLogger.SendEmail("joelr@unbeatablesale.com", psSubject, psBody, null, poAttch, poBC, psFrom);
-                                        pbSent = EmailLogger.SendEmail(psEmail, psSubject, psBody, null, poAttch, poBC, psFrom);
+                                        //03/12/2024 - JR\\\\
+                                        pbSent = EmailLogger.SendEmail(psEmail, psSubject, psBody, poAttch, null, null, psFrom);
                                         if (pbSent)
                                         {
                                             pbSent1 = true;
@@ -549,6 +551,8 @@ namespace ReturnsCreditRequest
                         string psOrderNumber = poRow.Cells[3].FormattedValue.ToString();
                         string psSupplier = poRow.Cells[5].FormattedValue.ToString();
                         string psDescription = poRow.Cells[8].FormattedValue.ToString();
+                        //03/18/2024 - JR\\\\
+                        string psSku = poRow.Cells[6].FormattedValue.ToString();
                         string psSupplierSku = poRow.Cells[7].FormattedValue.ToString();
                         string psDateAuth = poRow.Cells[4].FormattedValue.ToString();
                         string psSupplierID = poRow.Cells[1].FormattedValue.ToString();
@@ -560,6 +564,27 @@ namespace ReturnsCreditRequest
                         string psStatus = poRow.Cells[21].FormattedValue.ToString();
 
                         string psAuditDate = "";
+                        string psCarrier = "";
+                        //03/15/2024 - JR\\\\
+                        if (psTrackingNumber.Trim().Length > 0 && psOrderNumber.Trim().Length > 0)
+                        {
+                            psCarrier = da.Get_Carrier(Convert.ToInt32(psOrderNumber), psTrackingNumber);
+
+                            if (psCarrier == "UPS")
+                            {
+                                psTrackingNumber = "https://wwwapps.ups.com/WebTracking/track?track=yes&trackNums=" + psTrackingNumber;
+                            }
+
+                            if (psCarrier == "USPS")
+                            {
+                                psTrackingNumber = "https://tools.usps.com/go/TrackConfirmAction?tLabels=" + psTrackingNumber;
+                            }
+
+                            if (psCarrier == "FX")
+                            {
+                                psTrackingNumber = "https://www.fedex.com/apps/fedextrack/?tracknumbers=" + psTrackingNumber;
+                            }
+                        }
 
                         int plNoticeNumber = 1;
                         if (psNoticeNumber.Trim().Length > 0)
@@ -604,12 +629,22 @@ namespace ReturnsCreditRequest
                             double pdCharge = Convert.ToDouble(poDataRow3["Charge"].ToString());
                             string psReason = poDataRow3["Reason"].ToString();
 
+                            //03/18/2024 - JR\\\\
+                            string psInvoiceNumber = da.Get_InvoiceNumber(Convert.ToInt32(psOrderNumber), psSku, Convert.ToInt32(psSupplierID));
+                            if (psInvoiceNumber.Trim().Length>0)
+                            {
+                                psInvoiceNumber = "And Invoice#: " + psInvoiceNumber;
+                            }
+
+
                             psBody = psBody.Replace("<PO_Number>", psOrderNumber).Replace("<RaNumber>", psAuth)
                             .Replace("<DateReturnedtoVendor>", psDateAuth).Replace("<Supplier_SKU>", psSupplierSku)
                             .Replace("<Description>", psDescription)
                             .Replace("<SupplierID>", psSupplierID).Replace("<ShipName>", psShipTo)
                             .Replace("<Qty>",psQty)
                             .Replace("<TrackingNumber>", psTrackingNumber).Replace("<Name>", psName).Replace("<SupplierName>", psSupplier)
+                            //03/18/2024 - JR\\\\
+                            .Replace("<InvoiceNumber>", psInvoiceNumber)
                             .Replace("<Memo>", psMemo)
                             .Replace("<ShipCompany>", psShipCompany).Replace("<ShipAddress>", poDataRow2["ShipAddress"].ToString())
                             .Replace("<ShipAddress2>", poDataRow2["ShipAddress2"].ToString())

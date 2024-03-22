@@ -780,6 +780,69 @@ namespace ReturnsCreditRequest
             return poTemplate;
         }
 
+        public string Get_Carrier(int xlOrderNumber, string xsTrackingNumber)
+        {
+            //03/15/2024 - JR\\\\
+            string psCarrier = "";
+            try
+            {
+                String connectionString = ConfigurationManager.ConnectionStrings["ubsInterimTestDB"].ConnectionString;
+                SqlConnection conn = new SqlConnection(connectionString);
+                SqlCommand cmd = new SqlCommand("p_Returns_Get_Credit_Request_Carrier", conn);
+
+                conn.Open();
+                cmd.CommandTimeout = 100;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("@OrderNumber", xlOrderNumber);
+                cmd.Parameters.AddWithValue("@TrackingNumber", xsTrackingNumber);
+
+                cmd.Parameters.Add("@Carrier", SqlDbType.VarChar, 250).Direction = ParameterDirection.Output;
+
+                cmd.ExecuteNonQuery();
+                psCarrier = cmd.Parameters["@Carrier"].Value.ToString();
+                conn.Close();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message.ToString());
+            }
+            return psCarrier;
+        }
+
+
+        public string Get_InvoiceNumber(int xlOrderNumber, string xsSKU, int xlSupplierID)
+        {
+            //03/15/2024 - JR\\\\
+            string psInvoiceNumber = "";
+            try
+            {
+                String connectionString = ConfigurationManager.ConnectionStrings["ubsInterimTestDB"].ConnectionString;
+                SqlConnection conn = new SqlConnection(connectionString);
+                SqlCommand cmd = new SqlCommand("p_Returns_Get_Credit_Request_Invoice_Number", conn);
+
+                conn.Open();
+                cmd.CommandTimeout = 100;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.AddWithValue("@OrderNumber", xlOrderNumber);
+                cmd.Parameters.AddWithValue("@SupplierID", xlSupplierID);
+                cmd.Parameters.AddWithValue("@Sku", xsSKU);
+
+                cmd.Parameters.Add("@InvoiceNumber", SqlDbType.VarChar, 250).Direction = ParameterDirection.Output;
+
+                cmd.ExecuteNonQuery();
+                psInvoiceNumber = cmd.Parameters["@InvoiceNumber"].Value.ToString();
+                conn.Close();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message.ToString());
+            }
+            return psInvoiceNumber;
+        }
 
         public DataTable Get_Email_Template(int xlNoticeNumber, int xlTracking, string xsCategory
             ,string xsReturnStatus, string xsTerms)
